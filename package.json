@@ -11,6 +11,7 @@
     "react-scripts": "2.0.3",
     "rebass": "^3.0.0-9",
     "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0",
     "semantic-ui-css": "^2.4.0",
     "semantic-ui-react": "^0.82.5",
     "styled-components": "^3.4.9"

@@ -20,14 +20,7 @@ export default class Favorite extends React.Component {
         </Flex>
 
         <div className="landing-bg">
-          <div className="landing-content">
-            <Link to="/App" className="landing-link">
-              <Button icon>
-                <Icon name="list" />
-                Home
-              </Button>
-            </Link>
-          </div>
+          <div className="landing-content" />
         </div>
       </React.Fragment>
     );
