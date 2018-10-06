@@ -6,6 +6,8 @@ import { Flex, Box } from "rebass";
 import { Card } from "primereact/card";
 import "primereact/resources/themes/nova-light/theme.css";
 import "primereact/resources/primereact.min.css";
+import { connect } from "react-redux";
+import createItem from "../State/Action";
 
 const SearchBar = ({ changeItemValue, onCreateItem, ItemValue }) => (
   <Form>
@@ -23,10 +25,9 @@ const SearchBar = ({ changeItemValue, onCreateItem, ItemValue }) => (
   </Form>
 );
 
-export default class MovieList extends React.Component {
+class MovieList extends React.Component {
   state = {
-    ItemValue: "",
-    Item: ""
+    ItemValue: ""
   };
 
   changeItemValue(value) {
@@ -36,7 +37,7 @@ export default class MovieList extends React.Component {
   }
 
   PushItem() {
-    this.setState({
+    this.props.createItem({
       Id: Date.now(),
       Item: this.state.ItemValue
     });
@@ -95,3 +96,16 @@ export default class MovieList extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  item: state.item.item
+});
+
+const mapDispatchToProps = {
+  createItem
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MovieList);
