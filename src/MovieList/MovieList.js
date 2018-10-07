@@ -7,7 +7,7 @@ import { Card } from "primereact/card";
 import "primereact/resources/themes/nova-light/theme.css";
 import "primereact/resources/primereact.min.css";
 import { connect } from "react-redux";
-import createItem from "../State/Action";
+import { findMovie } from "../State/Action";
 
 const SearchBar = ({ changeItemValue, onCreateItem, ItemValue }) => (
   <Form>
@@ -37,17 +37,16 @@ class MovieList extends React.Component {
   }
 
   PushItem() {
-    this.props.createItem({
+    this.props.findMovie({
       Id: Date.now(),
       Item: this.state.ItemValue
     });
   }
-  PrintOut() {
-    console.log(this.state.Item);
-  }
 
   render() {
-    const header = <img alt="Card" src="/public/clack.jpg" />;
+    const header = (
+      <img alt="Card" src={this.props.movie.imageUrl} className="movie-card" />
+    );
     const footer = (
       <span>
         <Button label="Favorite" icon="star" />
@@ -73,22 +72,17 @@ class MovieList extends React.Component {
             />
           </Box>
         </Flex>
-        <div className="landing-bg">
-          <div className="landing-content">
+        <div className="movie-bg">
+          <div className="movie-content">
             <Card
-              title="Advanced Card"
-              subTitle="Subtitle"
+              title={this.props.movie.Item}
+              subTitle={this.props.movie.type}
               style={{ width: "360px" }}
               className="ui-card-shadow"
               footer={footer}
               header={header}
             >
-              <div>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Inventore sed consequuntur error repudiandae numquam deserunt
-                quisquam repellat libero asperiores earum nam nobis, culpa
-                ratione quam perferendis esse, cupiditate neque quas!
-              </div>
+              <div>{this.props.movie.plot}</div>
             </Card>
           </div>
         </div>
@@ -98,11 +92,14 @@ class MovieList extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  item: state.item.item
+  movie: state.item.movie,
+  isLoading: state.item.isLoading,
+  hasError: state.item.error,
+  image: state.item.imageUrl
 });
 
 const mapDispatchToProps = {
-  createItem
+  findMovie
 };
 
 export default connect(

@@ -1,4 +1,4 @@
-.landing-bg {
+.movie-bg {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,14 +9,18 @@
   background-position: center;
 }
 
-.landing-content {
+.movie-content {
   text-align: center;
 }
 
-.landing-title {
+.movie-title {
   margin-bottom: 2rem !important;
 }
 
-.landing-link {
+.movie-link {
   text-decoration: none;
+}
+
+.movie-card {
+  height: 400px;
 }
