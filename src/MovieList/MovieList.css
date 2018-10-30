@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-image: url("/public/clack.jpg");
+  background-image: url("/clack.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -13,14 +13,6 @@
   text-align: center;
 }
 
-.movie-title {
-  margin-bottom: 2rem !important;
-}
-
-.movie-link {
-  text-decoration: none;
-}
-
 .movie-card {
-  height: 400px;
+  height: 350px;
 }

@@ -1,4 +1,4 @@
-.landing-bg {
+.favorite-bg {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,14 +9,6 @@
   background-position: center;
 }
 
-.landing-content {
+.favorite-content {
   text-align: center;
-}
-
-.landing-title {
-  margin-bottom: 2rem !important;
-}
-
-.landing-link {
-  text-decoration: none;
 }

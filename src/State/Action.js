@@ -50,6 +50,7 @@ export function findMovie(movie) {
             dispatch(
               createItemSuccess({
                 ...movie,
+                name: data.Title,
                 imageUrl: data.Poster,
                 plot: data.Plot,
                 type: data.Type
@@ -59,5 +60,15 @@ export function findMovie(movie) {
         );
       })
       .catch(err => dispatch(createItemFail(err.message)));
+  };
+}
+
+export const DATA_SAVE = "DATA_SAVE";
+export function dataSave(data) {
+  return {
+    type: DATA_SAVE,
+    payload: {
+      data
+    }
   };
 }

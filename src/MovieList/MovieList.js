@@ -7,7 +7,7 @@ import { Card } from "primereact/card";
 import "primereact/resources/themes/nova-light/theme.css";
 import "primereact/resources/primereact.min.css";
 import { connect } from "react-redux";
-import { findMovie } from "../State/Action";
+import { findMovie, dataSave } from "../State/Action";
 
 const SearchBar = ({ changeItemValue, onCreateItem, ItemValue }) => (
   <Form>
@@ -42,14 +42,31 @@ class MovieList extends React.Component {
       Item: this.state.ItemValue
     });
   }
+  SaveFavorite() {
+    this.props.dataSave({
+      id: Date.now(),
+      name: this.props.movie.name,
+      image: this.props.movie.imageUrl,
+      type: this.props.movie.type,
+      plot: this.props.movie.plot
+    });
+  }
 
   render() {
     const header = (
-      <img alt="Card" src={this.props.movie.imageUrl} className="movie-card" />
+      <img
+        alt="NoImage"
+        src={this.props.movie.imageUrl}
+        className="movie-card"
+      />
     );
     const footer = (
       <span>
-        <Button label="Favorite" icon="star" />
+        <Button
+          label="Favorite"
+          icon="star"
+          onClick={() => this.SaveFavorite()}
+        />
       </span>
     );
 
@@ -75,12 +92,13 @@ class MovieList extends React.Component {
         <div className="movie-bg">
           <div className="movie-content">
             <Card
-              title={this.props.movie.Item}
+              title={this.props.movie.name}
               subTitle={this.props.movie.type}
               style={{ width: "360px" }}
               className="ui-card-shadow"
               footer={footer}
               header={header}
+              onFavorite={() => this.SaveFavorite()}
             >
               <div>{this.props.movie.plot}</div>
             </Card>
@@ -99,7 +117,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  findMovie
+  findMovie,
+  dataSave
 };
 
 export default connect(
